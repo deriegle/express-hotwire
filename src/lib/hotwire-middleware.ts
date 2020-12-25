@@ -5,6 +5,28 @@ type TurboStreamActionResponseHandler = (
   options?: StreamOptions
 ) => void;
 
+/**
+ * Object that is added to the Response object when using the expressHotwire middleware.
+ * It can be used to send turbo stream responses.
+ * 
+ * ```js
+ * const expressHotwire = require('express-hotwire');
+ * 
+ * app.use(expressHotwire());
+ * 
+ * app.post('/messages', (req, res) => {
+ *  res.turboStream.append('messages', {
+ *    partial: 'messages/show',
+ *    locals: {
+ *      message: {
+ *        id: 1,
+ *        content: 'My new message',
+ *      }
+ *    }
+ *  });
+ * });
+ * ```
+ */
 export type TurboStream = Record<
   TurboStreamActions,
   TurboStreamActionResponseHandler
@@ -104,7 +126,7 @@ export const middleware = (
 /**
  * This function is the default export from this library and is to be used when calling `app.use`.
  * 
- * ## Example
+ * ### Example
  * 
  * ```js
  * const expressHotwire = require('express-hotwire');
