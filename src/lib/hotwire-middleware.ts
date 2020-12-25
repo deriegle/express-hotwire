@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
+export type TurboStream = Record<TurboStreamActions, (target: string, options: StreamOptions) => void>;
+
 type Locals = Record<string, unknown>;
-type TurboStream = Record<TurboStreamActions, (target: string, options: StreamOptions) => void>;
 type StreamOptions = {
     readonly partial?: string;
     readonly locals?: Locals;
@@ -49,7 +50,7 @@ const stream = async (res: Response, target: string, action: TurboStreamActions,
 }
 
 
-export const middleware = (_req: Request, res: Response, next: NextFunction) => {
+export const middleware = () => (_req: Request, res: Response, next: NextFunction) => {
     const streamActionHandler = (action: TurboStreamActions) => async (target: string, options: StreamOptions) => {
         res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
         res.send(await stream(res, target, action, options));
