@@ -412,19 +412,19 @@
         "affectsGlobalScope": false
       },
       "./src/lib/hotwire-middleware.ts": {
-        "version": "94f82bf4cc6ebe1052ddb8eb0a36d6cb3931fbb91bbdd9999667fa510ff54b36",
-        "signature": "7a1e38d2f1bb58e60426995b4391c2e1bd6f98d4a1d69cf4ddae2353140cf0ab",
+        "version": "2e0d542cd6378343555559d64c62293c4a73c995c02c28c71fd6e6825277e6b5",
+        "signature": "06c99dccf347fc5fe671f6dac7697ee9c1275eb1b0a86fac8f5795711d35ea19",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "a0a59dbd58dae4cae8e0cc1ad513e3632b63281ed25ce11c5871885aa905bcc1",
+        "version": "c38d9be28833d132f4889bc00b8febb34de7a6840a83169b9815b7a9447a8d4b",
         "signature": "ce0dbed245923584284f6fb11c26aee2641940136d55ccfd09317bb751d31f20",
         "affectsGlobalScope": true
       },
       "./src/lib/__tests__/hotwire-middleware.test.ts": {
-        "version": "fa21d4589a97cdbe2dd16ba4654e1f82ed96a9407cc1af651fac79b02aeffc1f",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "affectsGlobalScope": true
+        "version": "df5d2f8099a715af8e92ad7d2cb668ec592acb44f08fc5d015eba80b20276741",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "affectsGlobalScope": false
       },
       "./node_modules/jest-diff/build/cleanupSemantic.d.ts": {
         "version": "d8aab31ba8e618cc3eea10b0945de81cb93b7e8150a013a482332263b9305322",
@@ -722,6 +722,10 @@
         "./node_modules/pretty-format/build/types.d.ts"
       ],
       "./src/index.ts": [
+        "./src/lib/hotwire-middleware.ts"
+      ],
+      "./src/lib/__tests__/hotwire-middleware.test.ts": [
+        "./node_modules/@types/express/index.d.ts",
         "./src/lib/hotwire-middleware.ts"
       ],
       "./src/lib/hotwire-middleware.ts": [
