@@ -63,7 +63,17 @@ const stream = async (
     `;
 };
 
-export const middleware = () => (
+/**
+ * Express Middleware function used to add turboStream object to the Response for sending
+ * turbo stream responses.
+ * 
+ * After using this middleware you should have access to the res.turboStream object
+ * 
+ * @param _req Express Request
+ * @param res Express Response
+ * @param next Express NextFunction
+ */
+export const middleware = (
   _req: Request,
   res: Response,
   next: NextFunction
@@ -74,9 +84,9 @@ export const middleware = () => (
     target: string,
     options?: StreamOptions
   ) => {
-    res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
-    res.send(await stream(res, target, action, options));
-  };
+      res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
+      res.send(await stream(res, target, action, options));
+    };
 
   const turboStream: TurboStream = {
     append: streamActionHandler(TurboStreamActions.append),
@@ -90,3 +100,16 @@ export const middleware = () => (
 
   next();
 };
+
+/**
+ * This function is the default export from this library and is to be used when calling `app.use`.
+ * 
+ * ## Example
+ * 
+ * ```js
+ * const expressHotwire = require('express-hotwire');
+ * 
+ * app.use(expressHotwire());
+ * ```
+ */
+export const buildMiddleware = () => middleware;

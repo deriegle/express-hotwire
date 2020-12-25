@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { middleware as buildMiddleware } from '../hotwire-middleware';
+import { middleware } from '../hotwire-middleware';
 
 const buildOptions = (): [Request, Response, NextFunction] => {
+  // TODO: Find better way to mock the Response object
   const res: Partial<Response> = {
     setHeader: jest.fn(),
     send: jest.fn(),
@@ -20,7 +21,6 @@ describe('middleware', () => {
 
     expect(res.turboStream).toBeUndefined();
 
-    const middleware = buildMiddleware();
     middleware(req, res, next);
 
     expect(res.turboStream).toBeDefined();
@@ -36,7 +36,6 @@ describe('middleware', () => {
     it('sets the correct header', () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       res?.turboStream?.append('message_1', {
@@ -54,7 +53,6 @@ describe('middleware', () => {
     it('sends the expected response', async () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       await res?.turboStream?.append('message_1', {
@@ -81,7 +79,6 @@ describe('middleware', () => {
     it('sets the correct header', () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       res?.turboStream?.prepend('message_1', {
@@ -99,7 +96,6 @@ describe('middleware', () => {
     it('sends the expected response', async () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       await res?.turboStream?.prepend('message_1', {
@@ -126,7 +122,6 @@ describe('middleware', () => {
     it('sets the correct header', () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       res?.turboStream?.remove('message_1');
@@ -139,7 +134,6 @@ describe('middleware', () => {
     it('sends the expected response', async () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       await res?.turboStream?.remove('message_1');
@@ -161,7 +155,6 @@ describe('middleware', () => {
     it('sets the correct header', () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       res?.turboStream?.replace('message_1', {
@@ -179,7 +172,6 @@ describe('middleware', () => {
     it('sends the expected response', async () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       await res?.turboStream?.replace('message_1', {
@@ -206,7 +198,6 @@ describe('middleware', () => {
     it('sets the correct header', () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       res?.turboStream?.update('message_1', {
@@ -224,7 +215,6 @@ describe('middleware', () => {
     it('sends the expected response', async () => {
       const [req, res, next] = buildOptions();
 
-      const middleware = buildMiddleware();
       middleware(req, res as Response, next);
 
       await res?.turboStream?.update('message_1', {
