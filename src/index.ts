@@ -1,2 +1,2 @@
-export * from './lib/async';
-export * from './lib/number';
+import { middleware } from './lib/hotwire-middleware';
+export default middleware;
