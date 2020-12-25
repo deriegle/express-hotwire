@@ -4,8 +4,8 @@ const app = express();
 
 app.use(expressHotwire())
 
-app.get('/', (req, res) => {
-    res.send('<h1>It works!</h1>');
+app.get('/', (_req, res) => {
+    res.turboStream.append('message_1');
 });
 
 app.listen(3001, () => console.log('Example app listening on port 3001'));
