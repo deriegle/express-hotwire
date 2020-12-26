@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@bitauth/libauth@^1.17.1":
-  version "1.17.3"
-  resolved "https://registry.yarnpkg.com/@bitauth/libauth/-/libauth-1.17.3.tgz#4a29ff6a8b157d10050f0ba3c0f5a062805536d6"
-  integrity sha512-F8RewY6td3fyIQaUTMO1lV/aWLotB3HZ0UWKRCC+4pJbNCKlh8WLNNkiIPAFn6Mf3sPgYgrUnS3YlLRqMhzv7g==
-
 accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -100,10 +95,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-"express-hotwire@file:..":
-  version "1.0.0"
-  dependencies:
-    "@bitauth/libauth" "^1.17.1"
+express-hotwire@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/express-hotwire/-/express-hotwire-0.0.1.tgz#e1b985e553feae43b6528a96e694b079619cf5c0"
+  integrity sha512-OlpEyn0/aRLvvWeIcnEZSdFmU6Xb/ugXYdXtRrLLXsTlAwy3X79kaPLKPWmc23WPBuvwO2gkcNBlQ/U0YRnKXg==
 
 express@^4.17.1:
   version "4.17.1"

@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-hotwire": "file:.."
+    "express-hotwire": "0.0.1"
   }
 }
