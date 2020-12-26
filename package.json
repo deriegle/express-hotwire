@@ -1,6 +1,6 @@
 {
   "name": "express-hotwire",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Express tooling for hotwire.dev HTML over the wire",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
