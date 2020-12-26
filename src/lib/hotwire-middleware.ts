@@ -8,12 +8,12 @@ type TurboStreamActionResponseHandler = (
 /**
  * Object that is added to the Response object when using the expressHotwire middleware.
  * It can be used to send turbo stream responses.
- * 
+ *
  * ```js
  * const expressHotwire = require('express-hotwire');
- * 
+ *
  * app.use(expressHotwire());
- * 
+ *
  * app.post('/messages', (req, res) => {
  *  res.turboStream.append('messages', {
  *    partial: 'messages/show',
@@ -33,8 +33,9 @@ export type TurboStream = Record<
 >;
 
 type Locals = Record<string, unknown>;
+
 type StreamOptions = {
-  readonly partial?: string;
+  readonly partial: string;
   readonly locals?: Locals;
 };
 
@@ -72,25 +73,27 @@ const stream = async (
   res: Response,
   target: string,
   action: TurboStreamActions,
-  { partial, locals }: StreamOptions = {}
+  options?: StreamOptions
 ) => {
-  const content = partial ? await render(res, partial, locals) : '';
+  const content = options?.partial
+    ? await render(res, options.partial, options.locals)
+    : '';
 
   return `
-        <turbo-stream action="${action}" target="${target}">
-            <template>
-                ${content}
-            </template>
-        </turbo-stream>
-    `;
+  <turbo-stream action="${action}" target="${target}">
+    <template>
+${content}
+    </template>
+  </turbo-stream>
+  `;
 };
 
 /**
  * Express Middleware function used to add turboStream object to the Response for sending
  * turbo stream responses.
- * 
+ *
  * After using this middleware you should have access to the res.turboStream object
- * 
+ *
  * @param _req Express Request
  * @param res Express Response
  * @param next Express NextFunction
@@ -106,9 +109,9 @@ export const middleware = (
     target: string,
     options?: StreamOptions
   ) => {
-      res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
-      res.send(await stream(res, target, action, options));
-    };
+    res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
+    res.send(await stream(res, target, action, options));
+  };
 
   const turboStream: TurboStream = {
     append: streamActionHandler(TurboStreamActions.append),
@@ -125,12 +128,12 @@ export const middleware = (
 
 /**
  * This function is the default export from this library and is to be used when calling `app.use`.
- * 
+ *
  * ### Example
- * 
+ *
  * ```js
  * const expressHotwire = require('express-hotwire');
- * 
+ *
  * app.use(expressHotwire());
  * ```
  */

@@ -65,12 +65,12 @@ describe('middleware', () => {
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-                <turbo-stream action=\\"append\\" target=\\"message_1\\">
-                    <template>
-                        
-                    </template>
-                </turbo-stream>
-            "
+          <turbo-stream action=\\"append\\" target=\\"message_1\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
       `);
     });
   });
@@ -108,12 +108,12 @@ describe('middleware', () => {
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-                <turbo-stream action=\\"prepend\\" target=\\"message_1\\">
-                    <template>
-                        
-                    </template>
-                </turbo-stream>
-            "
+          <turbo-stream action=\\"prepend\\" target=\\"message_1\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
       `);
     });
   });
@@ -141,12 +141,12 @@ describe('middleware', () => {
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-                <turbo-stream action=\\"remove\\" target=\\"message_1\\">
-                    <template>
-                        
-                    </template>
-                </turbo-stream>
-            "
+          <turbo-stream action=\\"remove\\" target=\\"message_1\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
       `);
     });
   });
@@ -184,12 +184,12 @@ describe('middleware', () => {
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-                <turbo-stream action=\\"replace\\" target=\\"message_1\\">
-                    <template>
-                        
-                    </template>
-                </turbo-stream>
-            "
+          <turbo-stream action=\\"replace\\" target=\\"message_1\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
       `);
     });
   });
@@ -227,12 +227,12 @@ describe('middleware', () => {
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-                <turbo-stream action=\\"update\\" target=\\"message_1\\">
-                    <template>
-                        
-                    </template>
-                </turbo-stream>
-            "
+          <turbo-stream action=\\"update\\" target=\\"message_1\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
       `);
     });
   });
