@@ -34,10 +34,19 @@ export type TurboStream = Record<
 
 type Locals = Record<string, unknown>;
 
-type StreamOptions = {
+interface PartialStreamOptions {
+  readonly content?: never;
   readonly partial: string;
   readonly locals?: Locals;
-};
+}
+
+interface ContentStreamOptions {
+  readonly content: string;
+  readonly partial?: never;
+  readonly locals?: never;
+}
+
+type StreamOptions = PartialStreamOptions | ContentStreamOptions;
 
 enum TurboStreamActions {
   append = 'append',
@@ -66,6 +75,25 @@ const render = (
   });
 };
 
+const isContentStreamOptions = (
+  options: StreamOptions
+): options is ContentStreamOptions => {
+  return typeof (options as ContentStreamOptions).content === 'string';
+};
+
+const getContentFromOptions = async (
+  res: Response,
+  options?: StreamOptions
+): Promise<string> => {
+  if (!options) return '';
+
+  if (isContentStreamOptions(options)) {
+    return options.content;
+  } else {
+    return render(res, options.partial, options.locals);
+  }
+};
+
 /**
  * @ignore
  */
@@ -75,9 +103,7 @@ const stream = async (
   action: TurboStreamActions,
   options?: StreamOptions
 ) => {
-  const content = options?.partial
-    ? await render(res, options.partial, options.locals)
-    : '';
+  const content = await getContentFromOptions(res, options);
 
   return `
   <turbo-stream action="${action}" target="${target}">

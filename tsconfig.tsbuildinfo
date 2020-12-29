@@ -412,8 +412,8 @@
         "affectsGlobalScope": false
       },
       "./src/lib/hotwire-middleware.ts": {
-        "version": "2e0d542cd6378343555559d64c62293c4a73c995c02c28c71fd6e6825277e6b5",
-        "signature": "06c99dccf347fc5fe671f6dac7697ee9c1275eb1b0a86fac8f5795711d35ea19",
+        "version": "5f57774f02ca23f8f307d326ad8ba6453b06103ffc2fa276288081bd748ebdcc",
+        "signature": "bf14314a4de021387fca9b297f1d7158800fe89523ecbc9daec68ebe299b1de1",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -422,7 +422,7 @@
         "affectsGlobalScope": true
       },
       "./src/lib/__tests__/hotwire-middleware.test.ts": {
-        "version": "df5d2f8099a715af8e92ad7d2cb668ec592acb44f08fc5d015eba80b20276741",
+        "version": "9daf24a571ec7289637567cef098ad0ac2a32671f5cbf7d7274e4c36d7d6254c",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },

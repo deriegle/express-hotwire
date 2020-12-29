@@ -235,5 +235,26 @@ describe('middleware', () => {
           "
       `);
     });
+
+    it('sends the expected response when using content', async () => {
+      const [req, res, next] = buildOptions();
+
+      middleware(req, res as Response, next);
+
+      await res?.turboStream?.update('unread_count', {
+        content: '1',
+      });
+
+      expect(res.send).toHaveBeenCalled();
+      expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
+        "
+          <turbo-stream action=\\"update\\" target=\\"unread_count\\">
+            <template>
+        1
+            </template>
+          </turbo-stream>
+          "
+      `);
+    });
   });
 });
