@@ -1,0 +1,34 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+name: ci
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [10, 12, 14]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --version
+      - run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - name: Run linter
+        run: yarn test:lint
+
+      - name: Run prettier
+        run: yarn test:prettier
+
+      - name: Run spell check
+        run: yarn test:spelling
+
+      - name: Run unit tests
+        run: yarn test:unit
