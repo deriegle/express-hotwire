@@ -15,7 +15,16 @@ const messages = [
 
 const findIndex = (messageId) => messages.findIndex(({ id}) => id === parseInt(messageId));
 
-module.exports.updateById = (id, content) => {
+const getNextId = () => {
+    if (messages.length) {
+        const { id: lastId } = messages[messages.length - 1]
+        return  lastId + 1;
+    } else {
+        return 1;
+    }
+}
+
+const updateById = (id, content) => {
     const index = findIndex(id);
 
     messages[index].content = content;
@@ -23,11 +32,9 @@ module.exports.updateById = (id, content) => {
     return messages[index];
 }
 
-module.exports.create = (content) => {
-    const { id } = messages[messages.length - 1]
-
+const create = (content) => {
     const message = {
-        id: id + 1,
+        id: getNextId(),
         content,
     };
 
@@ -36,9 +43,9 @@ module.exports.create = (content) => {
     return message;
 }
 
-module.exports.findById = (messageId) => messages.find(({id}) => id === parseInt(messageId));
+const findById = (messageId) => messages.find(({id}) => id === parseInt(messageId));
 
-module.exports.removeById = (messageId) => {
+const removeById = (messageId) => {
     const index = findIndex(messageId);
 
     if (index !== -1) {
@@ -46,4 +53,12 @@ module.exports.removeById = (messageId) => {
     }
 }
 
-module.exports.all = () => messages;
+const all = () => messages;
+
+module.exports = {
+    updateById,
+    create,
+    findById,
+    removeById,
+    all,
+};
