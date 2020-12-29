@@ -172,10 +172,10 @@ express-formidable@^1.2.0:
   dependencies:
     formidable "^1.0.17"
 
-express-hotwire@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/express-hotwire/-/express-hotwire-0.0.1.tgz#e1b985e553feae43b6528a96e694b079619cf5c0"
-  integrity sha512-OlpEyn0/aRLvvWeIcnEZSdFmU6Xb/ugXYdXtRrLLXsTlAwy3X79kaPLKPWmc23WPBuvwO2gkcNBlQ/U0YRnKXg==
+express-hotwire@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/express-hotwire/-/express-hotwire-0.0.5.tgz#610bc912ccb5a88b44a865f8bb68944945a14c80"
+  integrity sha512-kf8hPH2eDEKIBlKyswHiP5oiFpnFwncua0F2aeCgMHRFI7zJ148TCB+5In2fA7TWuX+SFNQzdFZrCWeYj1Uw4g==
 
 express@^4.17.1:
   version "4.17.1"
