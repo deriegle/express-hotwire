@@ -4,6 +4,9 @@ const formidable = require('express-formidable');
 const methodOverride = require('method-override');
 const path = require('path');
 
+const Message = require('./models/message');
+const messagesRouter = require('./routes/messages');
+
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -18,17 +21,10 @@ app.use(methodOverride('_method')); // Allow DELETE requests
 
 app.get('/', (_req, res) => {
     res.render('index', {
-        messages: [
-            {
-                id: 'message-1',
-                content: 'Hello, world',
-            },
-            {
-                id: 'message-2',
-                content: 'Hello, world again',
-            }
-        ]
-    })
+        messages: Message.all(),
+    });
 });
+
+app.use('/messages', messagesRouter);
 
 app.listen(PORT, () => console.log('Example app listening on port 3001'));
