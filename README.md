@@ -31,8 +31,6 @@ app.use(expressHotwire());
 
 3. Render your turbo stream responses using the res.turboStream object.
 
-We provide helpful methods for all the actions listed in the [hotwire.dev docs](https://turbo.hotwire.dev/handbook/streams).
-
 ```js
 app.post('/messages', (req, res) => {
   const { content } = req.fields;
@@ -52,6 +50,8 @@ app.post('/messages', (req, res) => {
 ```
 
 ## Turbo Stream Messages and Actions
+
+We provide helpful methods for all the actions listed in the [hotwire.dev docs](https://turbo.hotwire.dev/handbook/streams).
 
 ```js
 // The contents of the partial will be appended to the element with DOM ID "messages".
