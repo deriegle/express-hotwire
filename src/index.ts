@@ -1,6 +1,6 @@
-import { middleware, TurboStream } from './lib/hotwire-middleware';
+import { buildMiddleware, TurboStream } from './lib/hotwire-middleware';
 
-export default middleware;
+export default buildMiddleware;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

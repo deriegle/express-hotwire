@@ -412,17 +412,22 @@
         "affectsGlobalScope": false
       },
       "./src/lib/hotwire-middleware.ts": {
-        "version": "5f57774f02ca23f8f307d326ad8ba6453b06103ffc2fa276288081bd748ebdcc",
+        "version": "a62b876b8f74094e8e125430a365dcb66eb80f32960bfd625387659571183227",
         "signature": "bf14314a4de021387fca9b297f1d7158800fe89523ecbc9daec68ebe299b1de1",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "c38d9be28833d132f4889bc00b8febb34de7a6840a83169b9815b7a9447a8d4b",
-        "signature": "ce0dbed245923584284f6fb11c26aee2641940136d55ccfd09317bb751d31f20",
+        "version": "3276c489a7fbff530db50724ad6cd2acbbd23674e96c10a5a1a26d72692bac95",
+        "signature": "c2c7bf2fcd3ef94f20afd0a50f10c3d295cc876523fd09ddb8c49f49f6eea9b9",
         "affectsGlobalScope": true
       },
+      "./src/__tests__/index.test.ts": {
+        "version": "caa3584d5ff40ae3f25fcf4c4aff2eaf25e11e243c138487f98e9d4da08ecbca",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "affectsGlobalScope": false
+      },
       "./src/lib/__tests__/hotwire-middleware.test.ts": {
-        "version": "9daf24a571ec7289637567cef098ad0ac2a32671f5cbf7d7274e4c36d7d6254c",
+        "version": "1e43442d179594a340d1077f2e31e9c53ae952ed4a395f1bca1a568b86602409",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
@@ -720,6 +725,10 @@
       ],
       "./node_modules/pretty-format/build/index.d.ts": [
         "./node_modules/pretty-format/build/types.d.ts"
+      ],
+      "./src/__tests__/index.test.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./src/index.ts"
       ],
       "./src/index.ts": [
         "./src/lib/hotwire-middleware.ts"
@@ -1046,6 +1055,7 @@
       "./node_modules/typescript/lib/lib.es2020.bigint.d.ts",
       "./node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/typescript/lib/lib.esnext.intl.d.ts",
+      "./src/__tests__/index.test.ts",
       "./src/index.ts",
       "./src/lib/__tests__/hotwire-middleware.test.ts",
       "./src/lib/hotwire-middleware.ts"
