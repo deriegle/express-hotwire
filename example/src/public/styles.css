@@ -1,0 +1,13 @@
+.message-container {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.message-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}

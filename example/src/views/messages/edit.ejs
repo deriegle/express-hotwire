@@ -1,0 +1,6 @@
+<turbo-frame id="message_frame_<%- message.id %>" target="_top">
+    <form action="/messages/<%- message.id %>" method="POST">
+        <input name="content" type="text" value="<%- message.content %>" />
+        <button type="submit">Send</button>
+    </form>
+</turbo-frame>

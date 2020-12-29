@@ -1,0 +1,15 @@
+<turbo-frame id="message_frame_<%- message.id %>">
+    <div id="message_<%- message.id %>" class="message-container">
+        <p><%- message.content %></p>
+
+        <div class="message-actions">
+            <form action="/messages/<%- message.id %>/edit">
+                <button type="submit">Edit</button>
+            </form>
+
+            <form action="/messages/<%- message.id %>?_method=DELETE" method="POST">
+                <button type="submit">Remove</button>
+            </form>
+        </div>
+    </div>
+</turbo-frame>

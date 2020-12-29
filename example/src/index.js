@@ -17,7 +17,18 @@ app.use(formidable()); // Collect data from form submissions
 app.use(methodOverride('_method')); // Allow DELETE requests
 
 app.get('/', (_req, res) => {
-    res.turboStream.append('message_1');
+    res.render('index', {
+        messages: [
+            {
+                id: 'message-1',
+                content: 'Hello, world',
+            },
+            {
+                id: 'message-2',
+                content: 'Hello, world again',
+            }
+        ]
+    })
 });
 
 app.listen(PORT, () => console.log('Example app listening on port 3001'));
