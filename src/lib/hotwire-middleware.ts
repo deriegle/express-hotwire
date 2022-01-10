@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 type TurboStreamActionResponseHandler = (
   target: string,
   options?: StreamOptions
-) => void;
+) => Promise<void>;
 
 /**
  * Object that is added to the Response object when using the expressHotwire middleware.
