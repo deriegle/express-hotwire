@@ -10,7 +10,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "express-hotwire": "0.3.0",
+    "express-hotwire": "0.3.1",
     "method-override": "^3.0.0"
   }
 }
