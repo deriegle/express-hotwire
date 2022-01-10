@@ -17,12 +17,12 @@ router.param('messageId', (_req, _res, next, messageId) => {
 // POST /messages
 // 
 // Creates a new message and then appends the new message content to the #messages div
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { content } = req.fields || {};
 
     const message = Message.create(content || '');
 
-    res.turboStream.append('messages', {
+    await res.turboStream.append('messages', {
         partial: 'messages/show', // Use the messages/show.ejs template to append the #messages div
         locals: {
             message,
@@ -56,12 +56,12 @@ router.post('/:messageId', (req, res) => {
 // DELETE /messages/:messageId
 //
 // Deletes a message and removes the element with the id of "message_{id}".
-router.delete('/:messageId', (req, res) => {
+router.delete('/:messageId', async (req, res) => {
     const { messageId } = req.params;
 
     Message.removeById(messageId);
 
-    res.turboStream.remove(`message_${messageId}`);
+    await res.turboStream.remove(`message_${messageId}`);
 });
 
 module.exports = router;
