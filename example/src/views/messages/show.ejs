@@ -1,28 +1,28 @@
 <!--
-    Notice that this template is wrapped in a turbo-frame element with an id.
-    This turbo-frame ID is used to replace the view with the edit template when
-    clicking edit.
+  Notice that this template is wrapped in a turbo-frame element with an id.
+  This turbo-frame ID is used to replace the view with the edit template when
+  clicking edit.
 -->
 <turbo-frame id="message_frame_<%- message.id %>">
-    <!--
-        We use this message_{id} id to remove the element in the delete request.
+  <!--
+    We use this message_{id} id to remove the element in the delete request.
 
-        We use res.turboStream.remove('message_{id}'); to do that.
-    -->
+    We use res.turboStream.remove('message_{id}'); to do that.
+  -->
 
-    <div id="message_<%- message.id %>" class="message-container">
-        <p><%- message.content %></p>
+  <div id="message_<%- message.id %>" class="message-container">
+    <p><%- message.content %></p>
 
-        <div class="message-actions">
-            <!-- This will send down a new turbo-frame element with the same ID that will replace this turbo-frame with an edit form. -->
-            <form action="/messages/<%- message.id %>/edit">
-                <button type="submit">Edit</button>
-            </form>
+    <div class="message-actions">
+      <!-- This will send down a new turbo-frame element with the same ID that will replace this turbo-frame with an edit form. -->
+      <form action="/messages/<%- message.id %>/edit">
+        <button type="submit">Edit</button>
+      </form>
 
-            <!-- We're using the method-override package to send a DELETE request -->
-            <form action="/messages/<%- message.id %>?_method=DELETE" method="POST">
-                <button type="submit">Remove</button>
-            </form>
-        </div>
+      <!-- We're using the method-override package to send a DELETE request -->
+      <form action="/messages/<%- message.id %>?_method=DELETE" method="POST">
+        <button type="submit">Remove</button>
+      </form>
     </div>
+  </div>
 </turbo-frame>

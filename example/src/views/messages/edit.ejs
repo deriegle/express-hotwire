@@ -1,11 +1,11 @@
 <!--
-    We are using the turbo-frame element here to replace the existing messages/show.ejs template when you edit a message.
+  We are using the turbo-frame element here to replace the existing messages/show.ejs template when you edit a message.
 
-    When we send down a response with a turbo-frame with the same "id", @hotwire/turbo knows to replace that id in the DOM with the new response.
+  When we send down a response with a turbo-frame with the same "id", @hotwire/turbo knows to replace that id in the DOM with the new response.
 -->
 <turbo-frame id="message_frame_<%- message.id %>" target="_top">
-    <form action="/messages/<%- message.id %>" method="POST">
-        <input name="content" type="text" value="<%- message.content %>" />
-        <button type="submit">Send</button>
-    </form>
+  <form action="/messages/<%- message.id %>" method="POST">
+    <input name="content" type="text" value="<%- message.content %>" />
+    <button type="submit">Send</button>
+  </form>
 </turbo-frame>

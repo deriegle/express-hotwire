@@ -4,7 +4,7 @@ const formidable = require('express-formidable');
 const methodOverride = require('method-override');
 const path = require('path');
 
-const Message = require('./models/message');
+const MessageService = require('./services/message-service');
 const messagesRouter = require('./routes/messages');
 
 const PORT = process.env.PORT || 3001;
@@ -20,9 +20,9 @@ app.use(formidable()); // Collect data from form submissions
 app.use(methodOverride('_method')); // Allow DELETE requests
 
 app.get('/', (_req, res) => {
-    res.render('index', {
-        messages: Message.all(),
-    });
+  res.render('index', {
+    messages: MessageService.all(),
+  });
 });
 
 app.use('/messages', messagesRouter);
