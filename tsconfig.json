@@ -24,6 +24,6 @@
     "types": ["node", "jest"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules/**", "example/**", "src/**/*.test.ts", "**/__tests__/**"],
+  "exclude": ["node_modules/**", "example/**"],
   "compileOnSave": false
 }

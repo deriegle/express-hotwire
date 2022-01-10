@@ -18,7 +18,7 @@
     "test:spelling": "cspell \"{README.md,.github/*.md,src/**/*.ts}\"",
     "test:unit": "jest --runInBand",
     "watch:build": "tsc -p tsconfig.json -w",
-    "release": "run-s test build && standard-version"
+    "release": "yarn test && standard-version"
   },
   "engines": {
     "node": ">10"
@@ -46,6 +46,9 @@
   },
   "files": [
     "build/**",
+    "!build/**/__tests__/**",
+    "!build/**/*.test.js",
+    "!build/**/*.test.d.ts",
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
