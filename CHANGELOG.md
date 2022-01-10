@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/deriegle/express-hotwire/compare/v0.1.0...v0.3.0) (2022-01-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Remove support for Node v10
+
+### Bug Fixes
+
+* make middleware async ([#21](https://github.com/deriegle/express-hotwire/issues/21)) ([764efdd](https://github.com/deriegle/express-hotwire/commit/764efdd06ff182c7487fc665ca7cec97e60da3ba))
+* remove unnecessary deps ([#32](https://github.com/deriegle/express-hotwire/issues/32)) ([fbeb339](https://github.com/deriegle/express-hotwire/commit/fbeb339d93a0f07b60b40ab74435f1641d3a2665))
+
+
+* **deps:** update dependency cspell to v5 ([#15](https://github.com/deriegle/express-hotwire/issues/15)) ([56618c1](https://github.com/deriegle/express-hotwire/commit/56618c1fbec8357af34e198c3855dbb7ed5d861b))
+
 ## [0.2.0](https://github.com/deriegle/express-hotwire/compare/v0.1.0...v0.2.0) (2022-01-10)
 
 
