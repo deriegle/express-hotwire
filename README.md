@@ -32,14 +32,14 @@ app.use(expressHotwire());
 3. Render your turbo stream responses using the res.turboStream object.
 
 ```js
-app.post('/messages', (req, res) => {
+app.post('/messages', async (req, res) => {
   const { content } = req.fields;
 
   // create message and save in database/memory/etc
   const message = create(content);
 
   // Make sure the first argument matches the HTML element id that you want to append a child to
-  res.turboStream.append('messages', {
+  await res.turboStream.append('messages', {
     partial: 'messages/show', // This should be inside your views directory as views/messages/show.ejs
     locals: {
       // Add any variables needed to render the partial
