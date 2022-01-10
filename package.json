@@ -27,7 +27,7 @@
     "prepare-release": "run-s reset-hard test doc:html version doc:publish"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">10"
   },
   "devDependencies": {
     "@types/express": "4.17.13",
