@@ -132,7 +132,7 @@ export const middleware = (
   const streamActionHandler =
     (action: TurboStreamActions): TurboStreamActionResponseHandler =>
     async (target: string, options?: StreamOptions) => {
-      res.setHeader('Content-Type', ['text/html; turbo-stream; charset=utf-8']);
+      res.setHeader('Content-Type', ['text/vnd.turbo-stream.html']);
       res.send(await stream(res, target, action, options));
     };
 
