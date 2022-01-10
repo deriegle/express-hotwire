@@ -46,7 +46,7 @@ describe('middleware', () => {
       });
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
-        'text/html; turbo-stream; charset=utf-8',
+        'text/vnd.turbo-stream.html',
       ]);
     });
 
@@ -89,7 +89,7 @@ describe('middleware', () => {
       });
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
-        'text/html; turbo-stream; charset=utf-8',
+        'text/vnd.turbo-stream.html',
       ]);
     });
 
@@ -127,7 +127,7 @@ describe('middleware', () => {
       await res.turboStream.remove('message_1');
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
-        'text/html; turbo-stream; charset=utf-8',
+        'text/vnd.turbo-stream.html',
       ]);
     });
 
@@ -165,7 +165,7 @@ describe('middleware', () => {
       });
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
-        'text/html; turbo-stream; charset=utf-8',
+        'text/vnd.turbo-stream.html',
       ]);
     });
 
@@ -208,7 +208,7 @@ describe('middleware', () => {
       });
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
-        'text/html; turbo-stream; charset=utf-8',
+        'text/vnd.turbo-stream.html',
       ]);
     });
 
