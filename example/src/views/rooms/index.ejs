@@ -1,0 +1,9 @@
+<h1>Rooms</h1>
+
+<div id="rooms">
+  <% rooms.forEach((room) => { %>
+    <div>
+      <a href="/rooms/<%- room.id %>/">View <%- room.name %></a>
+    </div>
+  <% }) %>
+</div>

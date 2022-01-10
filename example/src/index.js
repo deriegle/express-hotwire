@@ -4,7 +4,7 @@ const formidable = require('express-formidable');
 const methodOverride = require('method-override');
 const path = require('path');
 
-const MessageService = require('./services/message-service');
+const RoomService = require('./services/room-service');
 const messagesRouter = require('./routes/messages');
 
 const PORT = process.env.PORT || 3001;
@@ -21,10 +21,10 @@ app.use(methodOverride('_method')); // Allow DELETE requests
 
 app.get('/', (_req, res) => {
   res.render('index', {
-    messages: MessageService.all(),
+    rooms: RoomService.all(),
   });
 });
 
-app.use('/messages', messagesRouter);
+app.use('/', messagesRouter);
 
 app.listen(PORT, () => console.log('Example app listening on port 3001'));

@@ -1,7 +1,19 @@
 const { Router } = require('express');
 const MessageService = require('../services/message-service');
+const RoomService = require('../services/room-service');
 
 const router = Router();
+
+router.param('roomId', (_req, _res, next, roomId) => {
+  const room = RoomService.findById(roomId);
+
+  if (!room) {
+    next(new Error('Room not found.'));
+    return;
+  }
+
+  next();
+});
 
 // Verify the :messageId parameter is for a valid Message.
 router.param('messageId', (_req, _res, next, messageId) => {
@@ -15,13 +27,26 @@ router.param('messageId', (_req, _res, next, messageId) => {
   next();
 });
 
-// POST /messages
+router.get('/rooms/:roomId/', async (req, res) => {
+  const roomId = parseInt(req.params.roomId);
+
+  const room = RoomService.findById(roomId);
+  const messages = MessageService.all(roomId);
+
+  res.render('rooms/view', {
+    room,
+    messages,
+  });
+});
+
+// POST /rooms/:roomId/messages
 // 
 // Creates a new message and then appends the new message content to the #messages div
-router.post('/', async (req, res) => {
+router.post('/rooms/:roomId/messages', async (req, res) => {
   const { content } = req.fields || {};
+  const roomId = parseInt(req.params.roomId);
 
-  const message = MessageService.create(content || '');
+  const message = MessageService.create(content || '', roomId);
 
   await res.turboStream.append('messages', {
     partial: 'messages/show', // Use the messages/show.ejs template to append the #messages div
@@ -31,10 +56,10 @@ router.post('/', async (req, res) => {
   })
 });
 
-// GET /messages/:messageId/edit
+// GET /rooms/:roomId/messages/:messageId/edit
 //
 // Renders edit view for a particular message using turbo streams
-router.get('/:messageId/edit', (req, res) => {
+router.get('/rooms/:roomId/messages/:messageId/edit', (req, res) => {
   const message = MessageService.findById(req.params.messageId); 
 
   res.render('messages/edit', {
@@ -42,10 +67,10 @@ router.get('/:messageId/edit', (req, res) => {
   })
 });
 
-// POST /messages/:messageId
+// POST /rooms/:roomId/messages/:messageId
 //
 // Updates existing message content
-router.post('/:messageId', (req, res) => {
+router.post('/rooms/:roomId/messages/:messageId', (req, res) => {
   const { content } = req.fields || {};
   const message = MessageService.updateById(req.params.messageId, content);
 
@@ -54,10 +79,10 @@ router.post('/:messageId', (req, res) => {
   });
 });
 
-// DELETE /messages/:messageId
+// DELETE /rooms/:roomId/messages/:messageId
 //
 // Deletes a message and removes the element with the id of "message_{id}".
-router.delete('/:messageId', async (req, res) => {
+router.delete('/rooms/:roomId/messages/:messageId', async (req, res) => {
   const { messageId } = req.params;
 
   MessageService.removeById(messageId);

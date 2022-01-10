@@ -2,14 +2,17 @@ let messages = [
   {
     id: 1,
     content: 'Hello, world',
+    roomId: 0,
   },
   {
     id: 2,
     content: 'Try this',
+    roomId: 0,
   },
   {
     id: 3,
     content: 'Again',
+    roomId: 0,
   }
 ];
 
@@ -31,10 +34,11 @@ class MessageService {
     return messages[index];
   }
 
-  static create(content) {
+  static create(content, roomId) {
     const message = {
       id: this.getNextId(),
       content,
+      roomId,
     };
 
     messages.push(message);
@@ -54,8 +58,8 @@ class MessageService {
     }
   }
 
-  static all() {
-    return messages;
+  static all(roomId) {
+    return messages.filter((m) => m.roomId === roomId);
   }
 
   static _findIndex(messageId) {

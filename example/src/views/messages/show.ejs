@@ -15,12 +15,12 @@
 
     <div class="message-actions">
       <!-- This will send down a new turbo-frame element with the same ID that will replace this turbo-frame with an edit form. -->
-      <form action="/messages/<%- message.id %>/edit">
+      <form action="/rooms/<%- message.roomId %>/messages/<%- message.id %>/edit">
         <button type="submit">Edit</button>
       </form>
 
       <!-- We're using the method-override package to send a DELETE request -->
-      <form action="/messages/<%- message.id %>?_method=DELETE" method="POST">
+      <form action="/rooms/<%- message.roomId %>/messages/<%- message.id %>?_method=DELETE" method="POST">
         <button type="submit">Remove</button>
       </form>
     </div>
