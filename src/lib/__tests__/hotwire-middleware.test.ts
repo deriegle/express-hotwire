@@ -33,12 +33,12 @@ describe('middleware', () => {
   });
 
   describe('append', () => {
-    it('sets the correct header', () => {
+    it('sets the correct header', async () => {
       const [req, res, next] = buildOptions();
 
       middleware(req, res as Response, next);
 
-      res?.turboStream?.append('message_1', {
+      await res.turboStream.append('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -55,7 +55,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.append('message_1', {
+      await res.turboStream.append('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -98,7 +98,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.prepend('message_1', {
+      await res.turboStream.prepend('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -119,12 +119,12 @@ describe('middleware', () => {
   });
 
   describe('remove', () => {
-    it('sets the correct header', () => {
+    it('sets the correct header', async () => {
       const [req, res, next] = buildOptions();
 
       middleware(req, res as Response, next);
 
-      res?.turboStream?.remove('message_1');
+      await res.turboStream.remove('message_1');
 
       expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
         'text/html; turbo-stream; charset=utf-8',
@@ -136,7 +136,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.remove('message_1');
+      await res.turboStream.remove('message_1');
 
       expect(res.send).toHaveBeenCalled();
       expect((res.send as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
@@ -152,12 +152,12 @@ describe('middleware', () => {
   });
 
   describe('replace', () => {
-    it('sets the correct header', () => {
+    it('sets the correct header', async () => {
       const [req, res, next] = buildOptions();
 
       middleware(req, res as Response, next);
 
-      res?.turboStream?.replace('message_1', {
+      await res.turboStream.replace('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -174,7 +174,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.replace('message_1', {
+      await res.turboStream.replace('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -195,12 +195,12 @@ describe('middleware', () => {
   });
 
   describe('update', () => {
-    it('sets the correct header', () => {
+    it('sets the correct header', async () => {
       const [req, res, next] = buildOptions();
 
       middleware(req, res as Response, next);
 
-      res?.turboStream?.update('message_1', {
+      await res.turboStream.update('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -217,7 +217,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.update('message_1', {
+      await res.turboStream.update('message_1', {
         partial: 'messages/show',
         locals: {
           message: {},
@@ -241,7 +241,7 @@ describe('middleware', () => {
 
       middleware(req, res as Response, next);
 
-      await res?.turboStream?.update('unread_count', {
+      await res.turboStream.update('unread_count', {
         content: '1',
       });
 
