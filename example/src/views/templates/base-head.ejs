@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Express-hotwire Example Project</title>
   <link rel="stylesheet" href="styles.css">
+  <script type="module">
+    import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+    window.Stimulus = Application.start()
+
+    class ResetFormController extends Controller {
+      reset() {
+        this.element.reset();
+      }
+    }
+
+    Stimulus.register("reset_form", ResetFormController);
+  </script>
   <script src="https://www.unpkg.com/@hotwired/turbo@7.1.0/dist/turbo.es2017-umd.js" defer></script>
 </head>
 <body>

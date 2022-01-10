@@ -1,4 +1,4 @@
-<form action="/messages/" method="POST" style="margin-top: 40px">
+<form action="/messages/" method="POST" style="margin-top: 40px" data-controller="reset_form" data-action="turbo:submit-end->reset_form#reset">
   <input name="content" type="text" />
   <button type="submit">Create New Message</button>
 </form>
