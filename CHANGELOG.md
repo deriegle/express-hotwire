@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/deriegle/express-hotwire/compare/v0.3.0...v0.3.1) (2022-01-10)
+
+
+### Bug Fixes
+
+* fix issue with ts build ([98a39be](https://github.com/deriegle/express-hotwire/commit/98a39be784ea9e25fcc99909a884bf9fb536c356))
+
 ## [0.3.0](https://github.com/deriegle/express-hotwire/compare/v0.1.0...v0.3.0) (2022-01-10)
 
 
