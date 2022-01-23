@@ -1,8 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 
+export enum MiddlewareWriteMode {
+  SEND,
+  WRITE
+}
+
 type TurboStreamActionResponseHandler = (
   target: string,
-  options?: StreamOptions
+  options?: StreamOptions,
+  mode?: MiddlewareWriteMode
 ) => Promise<void>;
 
 /**
@@ -131,10 +137,10 @@ export const middleware = (
 ) => {
   const streamActionHandler =
     (action: TurboStreamActions): TurboStreamActionResponseHandler =>
-    async (target: string, options?: StreamOptions) => {
-      res.setHeader('Content-Type', ['text/vnd.turbo-stream.html']);
-      res.send(await stream(res, target, action, options));
-    };
+      async (target: string, options?: StreamOptions, mode: MiddlewareWriteMode = MiddlewareWriteMode.SEND) => {
+        res.setHeader('Content-Type', ['text/vnd.turbo-stream.html']);
+        res[mode === MiddlewareWriteMode.SEND ? "send" : "write"](await stream(res, target, action, options));
+      };
 
   const turboStream: TurboStream = {
     append: streamActionHandler(TurboStreamActions.append),
