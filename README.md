@@ -89,3 +89,41 @@ res.turboStream.update('unread_count', {
 // The element with DOM ID "message_1" will be removed.
 res.turboStream.remove('message_1');
 ```
+
+## Sending Multiple TurboStreams
+
+Sometimes you want to return multiple turbo streams from a request handler.
+You can use the `res.turboStream.multiple` function to do that.
+You have access to all the same `turboStream` methods in the callback as defined above.
+
+**Note: You cannot call `turboStream.multiple` from within the callback. We don't support nested calls to `.multiple`**
+
+```js
+await res.turboStream.multiple((turboStream) => [
+  turboStream.append('messages', {
+    partial: 'messages/show',
+    locals: {
+      message: { id: 1, content: 'Hi' },
+    },
+  }),
+  turboStream.prepend('messages', {
+    partial: 'messages/show',
+    locals: {
+      message: { id: 1, content: 'Hi' },
+    },
+  }),
+  turboStream.replace('message_1', {
+    partial: 'messages/show',
+    locals: {
+      message: { id: 1, content: 'Hi' },
+    },
+  }),
+  turboStream.update('unread_count', {
+    partial: 'messages/show',
+    locals: {
+      message: { id: 1, content: 'Hi' },
+    },
+  }),
+  turboStream.remove('message_1'),
+]);
+```
