@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/deriegle/express-hotwire/compare/v0.3.1...v0.3.2) (2022-01-23)
+
+
+### Features
+
+* multiple turbo streams in one response ([#43](https://github.com/deriegle/express-hotwire/issues/43)) ([e26102d](https://github.com/deriegle/express-hotwire/commit/e26102d7576923cde82dda2a14aaff3a1e304925))
+* multiple turbostream responses ([#44](https://github.com/deriegle/express-hotwire/issues/44)) ([1eb626c](https://github.com/deriegle/express-hotwire/commit/1eb626c3c22de5a0aa69dda004333c7714a4e80b))
+
 ### [0.3.1](https://github.com/deriegle/express-hotwire/compare/v0.3.0...v0.3.1) (2022-01-10)
 
 
