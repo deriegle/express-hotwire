@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 export enum MiddlewareWriteMode {
   SEND,
-  WRITE
+  WRITE,
 }
 
 type TurboStreamActionResponseHandler = (
@@ -33,10 +33,20 @@ type TurboStreamActionResponseHandler = (
  * });
  * ```
  */
-export type TurboStream = Record<
-  TurboStreamActions,
-  TurboStreamActionResponseHandler
->;
+type TurboStream = Record<TurboStreamActions, TurboStreamActionResponseHandler>;
+
+type MultipleTurboStreams = (
+  cb: (turboStream: TurboStream) => Promise<void>[]
+) => Promise<void>;
+
+export type TurboStreamWithMultiple = TurboStream & {
+  multiple: MultipleTurboStreams;
+};
+
+enum ResponseWriteMode {
+  WRITE,
+  SEND,
+}
 
 type Locals = Record<string, unknown>;
 
@@ -136,21 +146,38 @@ export const middleware = (
   next: NextFunction
 ) => {
   const streamActionHandler =
-    (action: TurboStreamActions): TurboStreamActionResponseHandler =>
-      async (target: string, options?: StreamOptions, mode: MiddlewareWriteMode = MiddlewareWriteMode.SEND) => {
-        res.setHeader('Content-Type', ['text/vnd.turbo-stream.html']);
-        res[mode === MiddlewareWriteMode.SEND ? "send" : "write"](await stream(res, target, action, options));
-      };
+    (
+      action: TurboStreamActions,
+      writeMode: ResponseWriteMode
+    ): TurboStreamActionResponseHandler =>
+    async (target: string, options?: StreamOptions) => {
+      res.setHeader('Content-Type', ['text/vnd.turbo-stream.html']);
 
-  const turboStream: TurboStream = {
-    append: streamActionHandler(TurboStreamActions.append),
-    prepend: streamActionHandler(TurboStreamActions.prepend),
-    replace: streamActionHandler(TurboStreamActions.replace),
-    update: streamActionHandler(TurboStreamActions.update),
-    remove: streamActionHandler(TurboStreamActions.remove),
+      const responseMethod =
+        writeMode == ResponseWriteMode.SEND ? res.send : res.write;
+
+      responseMethod(await stream(res, target, action, options));
+    };
+
+  const createTurboStream = (writeMode: ResponseWriteMode): TurboStream => ({
+    append: streamActionHandler(TurboStreamActions.append, writeMode),
+    prepend: streamActionHandler(TurboStreamActions.prepend, writeMode),
+    replace: streamActionHandler(TurboStreamActions.replace, writeMode),
+    update: streamActionHandler(TurboStreamActions.update, writeMode),
+    remove: streamActionHandler(TurboStreamActions.remove, writeMode),
+  });
+
+  const turboStream = createTurboStream(ResponseWriteMode.SEND);
+
+  const turboStreamWithMultiple: TurboStreamWithMultiple = {
+    ...turboStream,
+    multiple: async (callback) => {
+      await Promise.all(callback(createTurboStream(ResponseWriteMode.WRITE)));
+      res.end();
+    },
   };
 
-  res.turboStream = turboStream;
+  res.turboStream = turboStreamWithMultiple;
 
   next();
 };

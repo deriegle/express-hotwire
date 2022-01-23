@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { middleware, MiddlewareWriteMode } from '../hotwire-middleware';
+import { middleware } from '../hotwire-middleware';
 
 const buildOptions = (): [Request, Response, NextFunction] => {
   // TODO: Find better way to mock the Response object
@@ -260,45 +260,51 @@ describe('middleware', () => {
     });
   });
 
-  it('supports multiple turbo stream responses', async () => {
-    const [req, res, next] = buildOptions();
+  describe('multiple', () => {
+    it('supports multiple turboStream responses', async () => {
+      const [req, res, next] = buildOptions();
 
-    middleware(req, res as Response, next);
+      middleware(req, res as Response, next);
 
-    await res.turboStream.append('message_1', {
-      partial: 'messages/show',
-      locals: {
-        message: {},
-      },
-    }, MiddlewareWriteMode.WRITE);
+      await res.turboStream.multiple((turboStream) => [
+        turboStream.append('message_1', {
+          partial: 'messages/show',
+          locals: {
+            message: {},
+          },
+        }),
+        turboStream.prepend('message_2', {
+          partial: 'messages/show',
+          locals: {
+            message: {},
+          },
+        }),
+      ]);
 
-    await res.turboStream.prepend('message_2', {
-      partial: 'messages/show',
-      locals: {
-        message: {},
-      },
-    }, MiddlewareWriteMode.WRITE);
+      expect(res.setHeader).toHaveBeenCalledWith('Content-Type', [
+        'text/vnd.turbo-stream.html',
+      ]);
 
-    res.end();
-
-    expect(res.write).toHaveBeenCalled();
-    expect((res.write as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
-      "
-        <turbo-stream action=\\"append\\" target=\\"message_1\\">
-          <template>
-
-          </template>
-        </turbo-stream>
+      expect((res.write as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(`
         "
-    `);
-    expect((res.write as jest.Mock).mock.calls[1][0]).toMatchInlineSnapshot(`
-      "
-        <turbo-stream action=\\"prepend\\" target=\\"message_2\\">
-          <template>
+          <turbo-stream action=\\"append\\" target=\\"message_1\\">
+            <template>
 
-          </template>
-        </turbo-stream>
+            </template>
+          </turbo-stream>
+          "
+      `);
+      expect((res.write as jest.Mock).mock.calls[1][0]).toMatchInlineSnapshot(`
         "
-    `);
+          <turbo-stream action=\\"prepend\\" target=\\"message_2\\">
+            <template>
+
+            </template>
+          </turbo-stream>
+          "
+      `);
+
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
   });
 });
