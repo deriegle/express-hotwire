@@ -156,7 +156,7 @@ export const middleware = (
       const responseMethod =
         writeMode == ResponseWriteMode.SEND ? res.send : res.write;
 
-      responseMethod(await stream(res, target, action, options));
+      responseMethod.bind(res)(await stream(res, target, action, options));
     };
 
   const createTurboStream = (writeMode: ResponseWriteMode): TurboStream => ({
