@@ -22,7 +22,7 @@ yarn add express-hotwire
 
 ```js
 const express = require('express');
-const expressHotwire = require('express-hotwire');
+const expressHotwire = require('express-hotwire').default;
 
 const app = express();
 

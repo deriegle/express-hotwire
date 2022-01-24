@@ -17,7 +17,7 @@ The primary goal was to learn and to provide a clear example to others on how th
 
 ```js
 const express = require('express');
-const expressHotwire = require('express-hotwire');
+const expressHotwire = require('express-hotwire').default;
 
 const app = express();
 
